@@ -84,9 +84,12 @@ ul li {
   padding: 0.25rem 0.75rem;
   border-radius: var(--radius);
 }
+ol {
+  padding: 0 1.5rem;
+}
 
 ol li {
-  padding: 4px 0;
+  padding: 4px;
 }
 
 footer {
