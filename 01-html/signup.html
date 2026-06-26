@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevMarket | Create Account</title>
+  </head>
+  <body>
+    <header>
+      <h1>DevMarket</h1>
+      <nav>
+        <a href="index.html">Home</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="signup">
+        <h2>Create Your Account</h2>
+
+        <form action="/api/auth/signup" method="POST">
+          <fieldset>
+            <legend>Personal Information</legend>
+
+            <label for="first-name">First Name</label>
+            <input
+              type="text"
+              id="first-name"
+              name="first-name"
+              placeholder="John"
+              required
+            />
+
+            <label for="last-name">Last Name</label>
+            <input
+              type="text"
+              id="last-name"
+              name="last-name"
+              placeholder="Doe"
+              required
+            />
+
+            <label for="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="you@example.com"
+              required
+              autocomplete="email"
+            />
+
+            <label for="phone">Phone Number</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="+91 9876543210"
+              required
+            />
+          </fieldset>
+
+          <fieldset>
+            <legend>Account Setup</legend>
+
+            <label for="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="cooldev123"
+              required
+              minlength="3"
+              maxlength="20"
+            />
+
+            <label for="role">I want to join as</label>
+            <select id="role" name="role" required>
+              <option value="">-- Select Role --</option>
+              <option value="buyer">Buyer</option>
+              <option value="seller">Seller</option>
+            </select>
+
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Min. 8 characters"
+              required
+              minlength="8"
+              autocomplete="new-password"
+            />
+
+            <label for="confirm-password">Confirm Password</label>
+            <input
+              type="password"
+              id="confirm-password"
+              name="confirm-password"
+              placeholder="Repeat your password"
+              required
+              autocomplete="new-password"
+            />
+          </fieldset>
+
+          <fieldset>
+            <legend>Preferences</legend>
+
+            <p>Experience Level</p>
+            <input
+              type="radio"
+              id="exp-beginner"
+              name="experience"
+              value="beginner"
+            />
+            <label for="exp-beginner">Beginner</label>
+
+            <input
+              type="radio"
+              id="exp-intermediate"
+              name="experience"
+              value="intermediate"
+            />
+            <label for="exp-intermediate">Intermediate</label>
+
+            <input
+              type="radio"
+              id="exp-advanced"
+              name="experience"
+              value="advanced"
+            />
+            <label for="exp-advanced">Advanced</label>
+
+            <br />
+
+            <input
+              type="checkbox"
+              id="terms"
+              name="terms"
+              value="agreed"
+              required
+            />
+            <label for="terms"> I agree to the Terms &amp; Conditions </label>
+
+            <input
+              type="checkbox"
+              id="newsletter"
+              name="newsletter"
+              value="subscribed"
+            />
+            <label for="newsletter">Subscribe to newsletter</label>
+          </fieldset>
+
+          <button type="submit">Create Account</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <address>Tamil Nadu, India</address>
+      <p>Built by Ennilavan &copy; 2026</p>
+    </footer>
+  </body>
+</html>
