@@ -1,0 +1,85 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary: #6366f1;
+  --text: #1f2937;
+  --text-light: #6b7280;
+  --background: #ffffff;
+  --border: #e5e7eb;
+  --radius: 8px;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+header {
+  background-color: var(--primary);
+  color: white;
+  padding: 1rem 2rem;
+}
+
+header h1 {
+  color: white;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-right: 1rem;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+section {
+  padding: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+aside {
+  padding: 2rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-light);
+}
+
+ul {
+  list-style: none;
+}
+
+ul li,
+ol li {
+  padding: 4px 0;
+}
+
+footer {
+  background-color: var(--text);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  margin: 0.5rem 0;
+}
