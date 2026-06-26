@@ -57,6 +57,13 @@ h2 {
   margin-bottom: 1rem;
 }
 
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 2rem;
+  padding: 2rem;
+}
+
 section {
   padding: 2rem;
   border-bottom: 1px solid var(--border);
@@ -64,17 +71,19 @@ section {
 
 aside {
   padding: 2rem;
-  border-bottom: 1px solid var(--border);
+  border-left: 3px solid var(--primary);
+  background-color: #f9fafb;
   color: var(--text-light);
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 1rem;
+  border-radius: var(--radius);
+  align-self: start; /* ← don't stretch to full height */
 }
-
 ul {
   list-style: none;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 0.75rem;
 }
 
