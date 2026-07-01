@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Skills Manager</title>
+  </head>
+  <body>
+    <div class="container mx-auto bg-gray-100 py-24 px-10">
+      <h1
+        class="text-center font-bold text-2xl md:text-4xl text-slate-600 mb-6"
+      >
+        My Skills Manager
+      </h1>
+      <div
+        class="flex flex-col justify-center items-center rounded-xl py-12 px-8 bg-gray-400 max-w-md md:max-w-xl mx-auto"
+      >
+        <div class="flex justify-center items-center gap-8 mb-6">
+          <input
+            type="text"
+            id="skill-input"
+            class="py-4 px-4 hover:shadow-md rounded-3xl"
+            placeholder="Enter a skill"
+          />
+          <button
+            id="add-btn"
+            class="bg-slate-500 px-4 py-4 rounded-full text-white font-bold hover:bg-slate-700"
+          >
+            Add Skill
+          </button>
+        </div>
+
+        <p id="counter" class="text-white text-xl md:text-2xl mb-6">
+          0 skills added
+        </p>
+
+        <ul id="skills-list" class="text-white list-inside mb-6"></ul>
+
+        <button
+          id="clear-btn"
+          class="bg-red-400 text-white px-4 py-2 rounded-full"
+        >
+          Clear All
+        </button>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
