@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>DevToolkit — Developer Utilities</title>
+  </head>
+  <body class="bg-gray-950 text-white font-sans min-h-screen">
+    <!-- HEADER -->
+    <header
+      class="border-b border-gray-800 px-6 py-4 flex items-center justify-between"
+    >
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">🛠️</span>
+        <h1 class="text-xl font-bold">DevToolkit</h1>
+      </div>
+      <p class="text-gray-400 text-sm hidden md:block">
+        Developer utilities in one place
+      </p>
+    </header>
+
+    <!-- TAB NAVIGATION -->
+    <nav class="border-b border-gray-800 px-4 flex gap-1 overflow-x-auto">
+      <button
+        class="tab-btn px-4 py-3 text-sm font-medium whitespace-nowrap transition-colors text-white border-b-2 border-indigo-500"
+        data-tab="json"
+      >
+        🔧 JSON
+      </button>
+      <button
+        class="tab-btn px-4 py-3 text-sm font-medium whitespace-nowrap transition-colors text-gray-400 border-b-2 border-transparent hover:text-white"
+        data-tab="password"
+      >
+        🔑 Password
+      </button>
+      <button
+        class="tab-btn px-4 py-3 text-sm font-medium whitespace-nowrap transition-colors text-gray-400 border-b-2 border-transparent hover:text-white"
+        data-tab="color"
+      >
+        🎨 Color
+      </button>
+      <button
+        class="tab-btn px-4 py-3 text-sm font-medium whitespace-nowrap transition-colors text-gray-400 border-b-2 border-transparent hover:text-white"
+        data-tab="counter"
+      >
+        📝 Counter
+      </button>
+      <button
+        class="tab-btn px-4 py-3 text-sm font-medium whitespace-nowrap transition-colors text-gray-400 border-b-2 border-transparent hover:text-white"
+        data-tab="base64"
+      >
+        🔒 Base64
+      </button>
+    </nav>
+
+    <!-- TOOL PANELS -->
+    <main class="max-w-3xl mx-auto px-4 py-8">
+      <!-- TOOL 1 — JSON FORMATTER -->
+      <div id="tab-json" class="tool-panel">
+        <h2 class="text-lg font-semibold mb-1">JSON Formatter & Validator</h2>
+        <p class="text-gray-400 text-sm mb-4">
+          Paste your JSON to format and validate it
+        </p>
+        <textarea
+          id="json-input"
+          class="w-full h-48 bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-sm font-mono text-gray-100 placeholder-gray-600 focus:outline-none focus:border-indigo-500 resize-none"
+          placeholder='{"name":"Ennilavan","role":"developer"}'
+        ></textarea>
+        <div class="flex gap-3 mt-3">
+          <button
+            id="json-format-btn"
+            class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-5 py-2 rounded-lg transition-colors text-sm"
+          >
+            Format
+          </button>
+          <button
+            id="json-clear-btn"
+            class="bg-gray-700 hover:bg-gray-600 text-white font-semibold px-5 py-2 rounded-lg transition-colors text-sm"
+          >
+            Clear
+          </button>
+          <button
+            id="json-copy-btn"
+            class="bg-gray-700 hover:bg-gray-600 text-white font-semibold px-5 py-2 rounded-lg transition-colors text-sm"
+          >
+            Copy
+          </button>
+        </div>
+        <p id="json-status" class="mt-3 text-sm"></p>
+        <pre
+          id="json-output"
+          class="mt-4 bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-sm font-mono text-green-400 overflow-auto max-h-64 hidden"
+        ></pre>
+      </div>
+
+      <!-- TOOL 2 — PASSWORD GENERATOR -->
+      <div id="tab-password" class="tool-panel hidden">
+        <h2 class="text-lg font-semibold mb-1">Password Generator</h2>
+        <p class="text-gray-400 text-sm mb-6">
+          Generate strong, secure passwords instantly
+        </p>
+
+        <!-- Output -->
+        <div
+          class="bg-gray-900 border border-gray-700 rounded-lg px-4 py-4 flex items-center justify-between mb-6"
+        >
+          <span
+            id="password-output"
+            class="font-mono text-lg text-green-400 break-all flex-1 select-all"
+          >
+            Click Generate
+          </span>
+          <button
+            id="password-copy-btn"
+            class="ml-4 text-gray-400 hover:text-white transition-colors text-sm shrink-0"
+          >
+            Copy
+          </button>
+        </div>
+
+        <!-- Options -->
+        <div class="space-y-4 mb-6">
+          <div>
+            <label
+              class="text-sm font-medium text-gray-300 flex justify-between mb-2"
+            >
+              <span>Length</span>
+              <span id="length-display" class="text-indigo-400 font-mono">
+                16
+              </span>
+            </label>
+            <input
+              type="range"
+              id="length-slider"
+              min="8"
+              max="32"
+              value="16"
+              class="w-full accent-indigo-500"
+            />
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                id="include-uppercase"
+                checked
+                class="w-4 h-4 accent-indigo-500"
+              />
+              <span class="text-sm text-gray-300">Uppercase (A-Z)</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                id="include-lowercase"
+                checked
+                class="w-4 h-4 accent-indigo-500"
+              />
+              <span class="text-sm text-gray-300">Lowercase (a-z)</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                id="include-numbers"
+                checked
+                class="w-4 h-4 accent-indigo-500"
+              />
+              <span class="text-sm text-gray-300">Numbers (0-9)</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                id="include-symbols"
+                checked
+                class="w-4 h-4 accent-indigo-500"
+              />
+              <span class="text-sm text-gray-300">Symbols (!@#$)</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Strength -->
+        <div class="mb-6">
+          <p class="text-sm text-gray-400 mb-2">Strength</p>
+          <div class="flex gap-1">
+            <div class="strength-bar h-2 flex-1 rounded-full bg-gray-700"></div>
+            <div class="strength-bar h-2 flex-1 rounded-full bg-gray-700"></div>
+            <div class="strength-bar h-2 flex-1 rounded-full bg-gray-700"></div>
+            <div class="strength-bar h-2 flex-1 rounded-full bg-gray-700"></div>
+          </div>
+          <p id="strength-label" class="text-xs text-gray-500 mt-1">—</p>
+        </div>
+
+        <button
+          id="generate-btn"
+          class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg transition-colors"
+        >
+          Generate Password
+        </button>
+      </div>
+
+      <!-- TOOL 3 — COLOR CONVERTER -->
+      <div id="tab-color" class="tool-panel hidden">
+        <h2 class="text-lg font-semibold mb-1">Color Converter</h2>
+        <p class="text-gray-400 text-sm mb-6">
+          Convert between HEX and RGB color formats
+        </p>
+
+        <!-- Color Preview -->
+        <div
+          id="color-preview"
+          class="w-full h-24 rounded-xl mb-6 border border-gray-700 transition-colors duration-300"
+          style="background-color: #6366f1"
+        ></div>
+
+        <!-- HEX Input -->
+        <div class="mb-4">
+          <label class="text-sm font-medium text-gray-300 mb-2 block">
+            HEX
+          </label>
+          <div class="flex gap-3">
+            <input
+              type="text"
+              id="hex-input"
+              value="#6366f1"
+              class="flex-1 bg-gray-900 border border-gray-700 rounded-lg px-4 py-2.5 font-mono text-sm text-gray-100 focus:outline-none focus:border-indigo-500"
+            />
+            <input
+              type="color"
+              id="color-picker"
+              value="#6366f1"
+              class="w-12 h-10 rounded-lg border border-gray-700 bg-gray-900 cursor-pointer p-1"
+            />
+          </div>
+        </div>
+
+        <!-- RGB Input -->
+        <div class="mb-6">
+          <label class="text-sm font-medium text-gray-300 mb-2 block">
+            RGB
+          </label>
+          <div class="grid grid-cols-3 gap-3">
+            <div>
+              <label class="text-xs text-gray-500 mb-1 block">R</label>
+              <input
+                type="number"
+                id="rgb-r"
+                value="99"
+                min="0"
+                max="255"
+                class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2.5 font-mono text-sm text-gray-100 focus:outline-none focus:border-indigo-500"
+              />
+            </div>
+            <div>
+              <label class="text-xs text-gray-500 mb-1 block">G</label>
+              <input
+                type="number"
+                id="rgb-g"
+                value="102"
+                min="0"
+                max="255"
+                class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2.5 font-mono text-sm text-gray-100 focus:outline-none focus:border-indigo-500"
+              />
+            </div>
+            <div>
+              <label class="text-xs text-gray-500 mb-1 block">B</label>
+              <input
+                type="number"
+                id="rgb-b"
+                value="241"
+                min="0"
+                max="255"
+                class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2.5 font-mono text-sm text-gray-100 focus:outline-none focus:border-indigo-500"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-3">
+          <button
+            id="hex-to-rgb-btn"
+            class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 rounded-lg transition-colors text-sm"
+          >
+            HEX → RGB
+          </button>
+          <button
+            id="rgb-to-hex-btn"
+            class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 rounded-lg transition-colors text-sm"
+          >
+            RGB → HEX
+          </button>
+          <button
+            id="color-copy-btn"
+            class="bg-gray-700 hover:bg-gray-600 text-white font-semibold px-5 py-2.5 rounded-lg transition-colors text-sm"
+          >
+            Copy HEX
+          </button>
+        </div>
+      </div>
+
+      <!-- TOOL 4 — WORD COUNTER -->
+      <div id="tab-counter" class="tool-panel hidden">
+        <h2 class="text-lg font-semibold mb-1">Word & Character Counter</h2>
+        <p class="text-gray-400 text-sm mb-4">Analyze your text instantly</p>
+
+        <textarea
+          id="counter-input"
+          class="w-full h-48 bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-sm text-gray-100 placeholder-gray-600 focus:outline-none focus:border-indigo-500 resize-none"
+          placeholder="Start typing or paste your text here..."
+        ></textarea>
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+          <div
+            class="bg-gray-900 rounded-xl p-4 text-center border border-gray-700"
+          >
+            <p id="word-count" class="text-3xl font-bold text-indigo-400">0</p>
+            <p class="text-xs text-gray-500 mt-1">Words</p>
+          </div>
+          <div
+            class="bg-gray-900 rounded-xl p-4 text-center border border-gray-700"
+          >
+            <p id="char-count" class="text-3xl font-bold text-indigo-400">0</p>
+            <p class="text-xs text-gray-500 mt-1">Characters</p>
+          </div>
+          <div
+            class="bg-gray-900 rounded-xl p-4 text-center border border-gray-700"
+          >
+            <p id="sentence-count" class="text-3xl font-bold text-indigo-400">
+              0
+            </p>
+            <p class="text-xs text-gray-500 mt-1">Sentences</p>
+          </div>
+          <div
+            class="bg-gray-900 rounded-xl p-4 text-center border border-gray-700"
+          >
+            <p id="read-time" class="text-3xl font-bold text-indigo-400">0</p>
+            <p class="text-xs text-gray-500 mt-1">Min Read</p>
+          </div>
+        </div>
+
+        <button
+          id="counter-clear-btn"
+          class="mt-4 bg-gray-700 hover:bg-gray-600 text-white font-semibold px-5 py-2 rounded-lg transition-colors text-sm"
+        >
+          Clear
+        </button>
+      </div>
+
+      <!-- TOOL 5 — BASE64 -->
+      <div id="tab-base64" class="tool-panel hidden">
+        <h2 class="text-lg font-semibold mb-1">Base64 Encoder / Decoder</h2>
+        <p class="text-gray-400 text-sm mb-4">
+          Encode text to Base64 or decode Base64 to text
+        </p>
+
+        <div class="space-y-4">
+          <!-- Input -->
+          <div>
+            <label class="text-sm font-medium text-gray-300 mb-2 block">
+              Input
+            </label>
+            <textarea
+              id="base64-input"
+              class="w-full h-32 bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-sm font-mono text-gray-100 placeholder-gray-600 focus:outline-none focus:border-indigo-500 resize-none"
+              placeholder="Enter text to encode or Base64 to decode..."
+            ></textarea>
+          </div>
+
+          <!-- Buttons -->
+          <div class="flex gap-3">
+            <button
+              id="encode-btn"
+              class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 rounded-lg transition-colors text-sm"
+            >
+              Encode →
+            </button>
+            <button
+              id="decode-btn"
+              class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 rounded-lg transition-colors text-sm"
+            >
+              ← Decode
+            </button>
+            <button
+              id="base64-clear-btn"
+              class="bg-gray-700 hover:bg-gray-600 text-white font-semibold px-5 py-2.5 rounded-lg transition-colors text-sm"
+            >
+              Clear
+            </button>
+          </div>
+
+          <!-- Output -->
+          <div>
+            <label
+              class="text-sm font-medium text-gray-300 mb-2 flex justify-between"
+            >
+              <span>Output</span>
+              <button
+                id="base64-copy-btn"
+                class="text-indigo-400 hover:text-indigo-300 text-sm transition-colors"
+              >
+                Copy
+              </button>
+            </label>
+            <textarea
+              id="base64-output"
+              readonly
+              class="w-full h-32 bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-sm font-mono text-green-400 placeholder-gray-600 focus:outline-none focus:border-indigo-500 resize-none"
+              placeholder="Output will appear here..."
+            ></textarea>
+          </div>
+
+          <p id="base64-status" class="text-sm"></p>
+        </div>
+      </div>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
