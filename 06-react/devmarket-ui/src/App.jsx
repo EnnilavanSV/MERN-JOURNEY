@@ -1,4 +1,5 @@
 import Practice from "./pages/Practice";
+import Effects from "./pages/Effects";
 
 const Button = ({ label, variant = "primary", onClick }) => {
   const variantStyles = {
@@ -221,6 +222,7 @@ function App() {
         </div>
       </div>
       <Practice></Practice>
+      <Effects></Effects>
     </>
   );
 }
