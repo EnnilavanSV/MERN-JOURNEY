@@ -1,3 +1,5 @@
+import Practice from "./pages/Practice";
+
 const Button = ({ label, variant = "primary", onClick }) => {
   const variantStyles = {
     primary: "bg-indigo-600 hover:bg-indigo-700 text-white",
@@ -146,76 +148,80 @@ const products = [
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-50 p-8 space-y-6">
-      {/* Buttons */}
-      <div className="flex gap-4">
-        <Button
-          label="Get Started"
-          variant="primary"
-          onClick={() => console.log("clicked")}
-        />
-        <Button
-          label="Learn More"
-          variant="secondary"
-          onClick={() => console.log("clicked")}
-        />
-      </div>
+    <>
+      {" "}
+      <div className="min-h-screen bg-gray-50 p-8 space-y-6">
+        {/* Buttons */}
+        <div className="flex gap-4">
+          <Button
+            label="Get Started"
+            variant="primary"
+            onClick={() => console.log("clicked")}
+          />
+          <Button
+            label="Learn More"
+            variant="secondary"
+            onClick={() => console.log("clicked")}
+          />
+        </div>
 
-      {/* Badges */}
-      <div className="flex gap-3">
-        <Badge text="Success" color="green" />
-        <Badge text="Error" color="red" />
-        <Badge text="Warning" color="yellow" />
-        <Badge text="Info" color="blue" />
-        <Badge text="New" color="indigo" />
-      </div>
-      <div className="flex gap-6 flex-wrap">
-        {/* Card with badge */}
-        <Card
-          title="React Dashboard"
-          description="A professional analytics dashboard built with React and Tailwind CSS."
-          badge="New"
-        />
+        {/* Badges */}
+        <div className="flex gap-3">
+          <Badge text="Success" color="green" />
+          <Badge text="Error" color="red" />
+          <Badge text="Warning" color="yellow" />
+          <Badge text="Info" color="blue" />
+          <Badge text="New" color="indigo" />
+        </div>
+        <div className="flex gap-6 flex-wrap">
+          {/* Card with badge */}
+          <Card
+            title="React Dashboard"
+            description="A professional analytics dashboard built with React and Tailwind CSS."
+            badge="New"
+          />
 
-        {/* Card with different badge */}
-        <Card
-          title="TypeScript Handbook"
-          description="Everything you need to know about TypeScript for real projects."
-          badge="Popular"
-        />
+          {/* Card with different badge */}
+          <Card
+            title="TypeScript Handbook"
+            description="Everything you need to know about TypeScript for real projects."
+            badge="Popular"
+          />
+        </div>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <StatCard
+            label="Total Revenue"
+            value="$48,295"
+            change="+12%"
+            positive={true}
+          />
+          <StatCard
+            label="Total Orders"
+            value="1,429"
+            change="+8%"
+            positive={true}
+          />
+          <StatCard
+            label="Refund Rate"
+            value="2.4%"
+            change="+0.8%"
+            positive={false}
+          />
+          <StatCard
+            label="Active Users"
+            value="3,842"
+            change="-3%"
+            positive={false}
+          />
+        </div>
+        <div className="flex gap-6 flex-wrap">
+          {products.map((product) => (
+            <ProductCard key={product.id} {...product} />
+          ))}
+        </div>
       </div>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <StatCard
-          label="Total Revenue"
-          value="$48,295"
-          change="+12%"
-          positive={true}
-        />
-        <StatCard
-          label="Total Orders"
-          value="1,429"
-          change="+8%"
-          positive={true}
-        />
-        <StatCard
-          label="Refund Rate"
-          value="2.4%"
-          change="+0.8%"
-          positive={false}
-        />
-        <StatCard
-          label="Active Users"
-          value="3,842"
-          change="-3%"
-          positive={false}
-        />
-      </div>
-      <div className="flex gap-6 flex-wrap">
-        {products.map((product) => (
-          <ProductCard key={product.id} {...product} />
-        ))}
-      </div>
-    </div>
+      <Practice></Practice>
+    </>
   );
 }
 
