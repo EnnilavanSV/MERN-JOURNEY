@@ -9,6 +9,8 @@ import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
 import ProductDetail from "./pages/ProductDetail";
 
+import { useTheme } from "./context/ThemeContext";
+
 const Button = ({ label, variant = "primary", onClick }) => {
   const variantStyles = {
     primary: "bg-indigo-600 hover:bg-indigo-700 text-white",
@@ -156,22 +158,10 @@ const products = [
 ];
 
 function App() {
-  const [cart, setCart] = useState([]);
-
-  const addToCart = (product) => {
-    const exists = cart.some((item) => item.id === product.id);
-    if (exists) return;
-    setCart([...cart, product]);
-  };
-
-  const removeFromCart = (productId) => {
-    setCart(cart.filter((item) => item.id !== productId));
-  };
-  const clearCart = () => setCart([]);
+  const { isDark } = useTheme();
 
   return (
     <>
-      <Navbar cartCount={cart.length}></Navbar>
       <div className="min-h-screen bg-gray-50 p-8 space-y-6">
         {/* Buttons */}
         <div className="flex gap-4">
@@ -244,25 +234,22 @@ function App() {
       </div>
       <Practice></Practice>
       <Effects></Effects>
-      <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/products" element={<Products />}></Route>
-        <Route
-          path="/products/:id"
-          element={<ProductDetail cart={cart} addToCart={addToCart} />}
-        ></Route>
-        <Route
-          path="/cart"
-          element={
-            <Cart
-              cart={cart}
-              removeFromCart={removeFromCart}
-              clearCart={clearCart}
-            />
-          }
-        ></Route>
-        <Route path="*" element={<NotFound />}></Route>
-      </Routes>
+      <div
+        className={
+          isDark
+            ? "bg-gray-900 text-white min-h-screen"
+            : "bg-gray-50 text-gray-900 min-h-screen"
+        }
+      >
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:id" element={<ProductDetail />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
     </>
   );
 }

@@ -1,21 +1,26 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useCart } from "../context/CartContext";
+import { useTheme } from "../context/ThemeContext";
 
-const Cart = ({ cart, removeFromCart, clearCart }) => {
+const Cart = () => {
   const navigate = useNavigate();
+  const { cart, removeFromCart, clearCart, total } = useCart();
+  const { isDark } = useTheme();
 
-  const total = cart.reduce((sum, item) => sum + item.price, 0);
   const tax = total * 0.18;
   const grandTotal = total + tax;
 
   if (cart.length === 0)
     return (
       <div
-        className="min-h-screen bg-gray-50 flex flex-col
-                    items-center justify-center gap-6"
+        className={`min-h-screen ${isDark ? "bg-gray-900" : "bg-gray-50"} flex flex-col
+                    items-center justify-center gap-6`}
       >
         <div className="text-center">
           <p className="text-6xl mb-4">🛒</p>
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">
+          <h2
+            className={`text-2xl font-bold  ${isDark ? "text-white" : "text-gray-900"} mb-2`}
+          >
             Your cart is empty
           </h2>
           <p className="text-gray-500 mb-6">
@@ -34,7 +39,7 @@ const Cart = ({ cart, removeFromCart, clearCart }) => {
     );
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className={`min-h-screen  ${isDark ? "bg-gray-900" : "bg-gray-50"}`}>
       <div className="max-w-4xl mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8">

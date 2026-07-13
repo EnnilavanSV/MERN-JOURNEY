@@ -1,5 +1,6 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useCart } from "../context/CartContext";
 
 const getStars = (rating) => {
   const rounded = Math.round(rating);
@@ -8,7 +9,8 @@ const getStars = (rating) => {
   );
 };
 
-const ProductDetail = ({ cart, addToCart }) => {
+const ProductDetail = () => {
+  const { cart, addToCart } = useCart();
   const { id } = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState(null);
