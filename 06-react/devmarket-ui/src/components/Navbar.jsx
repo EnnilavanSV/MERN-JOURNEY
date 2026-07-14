@@ -1,10 +1,18 @@
 import { Link, NavLink } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useTheme } from "../context/ThemeContext";
+import useWindowSize from "../hooks/useWindowSize";
 
 const Navbar = () => {
   const { cartCount } = useCart();
   const { isDark, toggleTheme } = useTheme();
+  const { isMobile, isTablet, isDesktop } = useWindowSize();
+
+  const breakpointLabel = isMobile
+    ? "📱 Mobile"
+    : isTablet
+      ? "📟 Tablet"
+      : "💻 Desktop";
 
   return (
     <nav
@@ -19,6 +27,8 @@ const Navbar = () => {
       <Link to="/" className="text-xl font-bold text-indigo-600">
         DevMarket
       </Link>
+
+      <span className="text-xs text-gray-400  md:block">{breakpointLabel}</span>
 
       <div className="flex items-center gap-6">
         <NavLink
