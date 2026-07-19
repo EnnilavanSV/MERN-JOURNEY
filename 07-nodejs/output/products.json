@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "React Dashboard",
+    "price": 49,
+    "category": "frontend"
+  },
+  {
+    "id": 2,
+    "name": "Node API Kit",
+    "price": 29,
+    "category": "backend"
+  },
+  {
+    "id": 3,
+    "name": "TypeScript Guide",
+    "price": 35,
+    "category": "fullstack"
+  }
+]
